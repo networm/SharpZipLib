@@ -29,7 +29,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public TarOutputStream(Stream outputStream, int blockFactor)
 		{
 			if (outputStream == null) {
-				throw new ArgumentNullException(nameof(outputStream));
+				throw new ArgumentNullException("nameof(outputStream)");
 			}
 
 			this.outputStream = outputStream;
@@ -119,7 +119,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		}
 
 		/// <summary>
-		/// Read a byte from the stream and advance the position within the stream 
+		/// Read a byte from the stream and advance the position within the stream
 		/// by one byte or returns -1 if at the end of the stream.
 		/// </summary>
 		/// <returns>The byte value or -1 if at end of stream</returns>
@@ -129,7 +129,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		}
 
 		/// <summary>
-		/// read bytes from the current stream and advance the position within the 
+		/// read bytes from the current stream and advance the position within the
 		/// stream by the number of bytes read.
 		/// </summary>
 		/// <param name="buffer">The buffer to store read bytes in.</param>
@@ -145,7 +145,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 		/// <summary>
 		/// All buffered data is written to destination
-		/// </summary>		
+		/// </summary>
 		public override void Flush()
 		{
 			outputStream.Flush();
@@ -219,7 +219,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public void PutNextEntry(TarEntry entry)
 		{
 			if (entry == null) {
-				throw new ArgumentNullException(nameof(entry));
+				throw new ArgumentNullException("nameof(entry)");
 			}
 
 			if (entry.TarHeader.Name.Length > TarHeader.NAMELEN) {
@@ -316,11 +316,11 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public override void Write(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			if (offset < 0) {
-				throw new ArgumentOutOfRangeException(nameof(offset), "Cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(offset)", "Cannot be negative");
 			}
 
 			if (buffer.Length - offset < count) {
@@ -328,13 +328,13 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 
 			if (count < 0) {
-				throw new ArgumentOutOfRangeException(nameof(count), "Cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(count)", "Cannot be negative");
 			}
 
 			if ((currBytes + count) > currSize) {
 				string errorText = string.Format("request to write '{0}' bytes exceeds size in header of '{1}' bytes",
 					count, this.currSize);
-				throw new ArgumentOutOfRangeException(nameof(count), errorText);
+				throw new ArgumentOutOfRangeException("nameof(count)", errorText);
 			}
 
 			//
@@ -407,7 +407,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 		/// <summary>
 		/// current 'Assembly' buffer length
-		/// </summary>		
+		/// </summary>
 		int assemblyBufferLength;
 
 		/// <summary>
@@ -421,7 +421,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		protected long currSize;
 
 		/// <summary>
-		/// single block working buffer 
+		/// single block working buffer
 		/// </summary>
 		protected byte[] blockBuffer;
 

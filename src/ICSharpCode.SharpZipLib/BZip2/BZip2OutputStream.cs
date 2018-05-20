@@ -125,7 +125,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		public BZip2OutputStream(Stream stream, int blockSize)
 		{
 			if (stream == null)
-				throw new ArgumentNullException(nameof(stream));
+				throw new ArgumentNullException("nameof(stream)");
 
 			baseStream = stream;
 			bsLive = 0;
@@ -278,15 +278,15 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		public override void Write(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			if (offset < 0) {
-				throw new ArgumentOutOfRangeException(nameof(offset));
+				throw new ArgumentOutOfRangeException("nameof(offset)");
 			}
 
 			if (count < 0) {
-				throw new ArgumentOutOfRangeException(nameof(count));
+				throw new ArgumentOutOfRangeException("nameof(count)");
 			}
 
 			if (buffer.Length - offset < count) {

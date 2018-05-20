@@ -85,7 +85,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		}
 
 		/// <summary>
-		/// Gets or sets the position within the stream. 
+		/// Gets or sets the position within the stream.
 		/// Setting the Position is not supported and throws a NotSupportedExceptionNotSupportedException
 		/// </summary>
 		/// <exception cref="NotSupportedException">Any attempt to set position</exception>
@@ -169,7 +169,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 		/// <summary>
 		/// Reads bytes from the current tar archive entry.
-		/// 
+		///
 		/// This method is aware of the boundaries of the current
 		/// entry in the archive and will deal with them appropriately
 		/// </summary>
@@ -188,7 +188,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			int totalRead = 0;
@@ -429,7 +429,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 						SkipToNextEntry();
 						headerBuf = this.tarBuffer.ReadBlock();
-					} else if (header.TypeFlag == TarHeader.LF_GHDR) {  // POSIX global extended header 
+					} else if (header.TypeFlag == TarHeader.LF_GHDR) {  // POSIX global extended header
 																		// Ignore things we dont understand completely for now
 						SkipToNextEntry();
 						headerBuf = this.tarBuffer.ReadBlock();
@@ -576,7 +576,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 			/// <summary>
 			/// Create an entry based on details in <paramref name="headerBuffer">header</paramref>
-			/// </summary>			
+			/// </summary>
 			/// <param name="headerBuffer">The buffer containing entry details.</param>
 			/// <returns>A new <see cref="TarEntry"/></returns>
 			public TarEntry CreateEntry(byte[] headerBuffer)
@@ -603,7 +603,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 		/// <summary>
 		/// Buffer used with calls to <code>Read()</code>
-		/// </summary>		
+		/// </summary>
 		protected byte[] readBuffer;
 
 		/// <summary>

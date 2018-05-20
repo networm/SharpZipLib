@@ -13,7 +13,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 	/// archive one after another.  It has a special method to start a new
 	/// zip entry.  The zip entries contains information about the file name
 	/// size, compressed size, CRC, etc.
-	/// 
+	///
 	/// It includes support for Stored and Deflated entries.
 	/// This class is not thread safe.
 	/// <br/>
@@ -23,21 +23,21 @@ namespace ICSharpCode.SharpZipLib.Zip
 	/// <code>
 	/// using System;
 	/// using System.IO;
-	/// 
+	///
 	/// using ICSharpCode.SharpZipLib.Core;
 	/// using ICSharpCode.SharpZipLib.Zip;
-	/// 
+	///
 	/// class MainClass
 	/// {
 	/// 	public static void Main(string[] args)
 	/// 	{
 	/// 		string[] filenames = Directory.GetFiles(args[0]);
 	/// 		byte[] buffer = new byte[4096];
-	/// 		
+	///
 	/// 		using ( ZipOutputStream s = new ZipOutputStream(File.Create(args[1])) ) {
-	/// 		
+	///
 	/// 			s.SetLevel(9); // 0 - store only to 9 - means best compression
-	/// 		
+	///
 	/// 			foreach (string file in filenames) {
 	/// 				ZipEntry entry = new ZipEntry(file);
 	/// 				s.PutNextEntry(entry);
@@ -48,7 +48,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 	/// 			}
 	/// 		}
 	/// 	}
-	/// }	
+	/// }
 	/// </code>
 	/// </example>
 	public class ZipOutputStream : DeflaterOutputStream
@@ -100,7 +100,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			// TODO: Its not yet clear how to handle unicode comments here.
 			byte[] commentBytes = ZipConstants.ConvertToArray(comment);
 			if (commentBytes.Length > 0xffff) {
-				throw new ArgumentOutOfRangeException(nameof(comment));
+				throw new ArgumentOutOfRangeException("nameof(comment)");
 			}
 			zipComment = commentBytes;
 		}
@@ -201,7 +201,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void PutNextEntry(ZipEntry entry)
 		{
 			if (entry == null) {
-				throw new ArgumentNullException(nameof(entry));
+				throw new ArgumentNullException("nameof(entry)");
 			}
 
 			if (entries == null) {
@@ -571,15 +571,15 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			if (offset < 0) {
-				throw new ArgumentOutOfRangeException(nameof(offset), "Cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(offset)", "Cannot be negative");
 			}
 
 			if (count < 0) {
-				throw new ArgumentOutOfRangeException(nameof(count), "Cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(count)", "Cannot be negative");
 			}
 
 			if ((buffer.Length - offset) < count) {

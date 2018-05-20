@@ -245,9 +245,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 	/// This class represents a Zip archive.  You can ask for the contained
 	/// entries, or get an input stream for a file entry.  The entry is
 	/// automatically decompressed.
-	/// 
+	///
 	/// You can also update the archive adding or deleting entries.
-	/// 
+	///
 	/// This class is thread safe for input:  You can open input streams for arbitrary
 	/// entries in different threads.
 	/// <br/>
@@ -259,9 +259,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 	/// using System.Text;
 	/// using System.Collections;
 	/// using System.IO;
-	/// 
+	///
 	/// using ICSharpCode.SharpZipLib.Zip;
-	/// 
+	///
 	/// class MainClass
 	/// {
 	/// 	static public void Main(string[] args)
@@ -360,7 +360,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public ZipFile(string name)
 		{
 			if (name == null) {
-				throw new ArgumentNullException(nameof(name));
+				throw new ArgumentNullException("nameof(name)");
 			}
 
 			name_ = name;
@@ -390,11 +390,11 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public ZipFile(FileStream file)
 		{
 			if (file == null) {
-				throw new ArgumentNullException(nameof(file));
+				throw new ArgumentNullException("nameof(file)");
 			}
 
 			if (!file.CanSeek) {
-				throw new ArgumentException("Stream is not seekable", nameof(file));
+				throw new ArgumentException("Stream is not seekable", "nameof(file)");
 			}
 
 			baseStream_ = file;
@@ -428,11 +428,11 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public ZipFile(Stream stream)
 		{
 			if (stream == null) {
-				throw new ArgumentNullException(nameof(stream));
+				throw new ArgumentNullException("nameof(stream)");
 			}
 
 			if (!stream.CanSeek) {
-				throw new ArgumentException("Stream is not seekable", nameof(stream));
+				throw new ArgumentException("Stream is not seekable", "nameof(stream)");
 			}
 
 			baseStream_ = stream;
@@ -496,7 +496,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public static ZipFile Create(string fileName)
 		{
 			if (fileName == null) {
-				throw new ArgumentNullException(nameof(fileName));
+				throw new ArgumentNullException("nameof(fileName)");
 			}
 
 			FileStream fs = File.Create(fileName);
@@ -518,15 +518,15 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public static ZipFile Create(Stream outStream)
 		{
 			if (outStream == null) {
-				throw new ArgumentNullException(nameof(outStream));
+				throw new ArgumentNullException("nameof(outStream)");
 			}
 
 			if (!outStream.CanWrite) {
-				throw new ArgumentException("Stream is not writeable", nameof(outStream));
+				throw new ArgumentException("Stream is not writeable", "nameof(outStream)");
 			}
 
 			if (!outStream.CanSeek) {
-				throw new ArgumentException("Stream is not seekable", nameof(outStream));
+				throw new ArgumentException("Stream is not seekable", "nameof(outStream)");
 			}
 
 			var result = new ZipFile();
@@ -695,7 +695,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public Stream GetInputStream(ZipEntry entry)
 		{
 			if (entry == null) {
-				throw new ArgumentNullException(nameof(entry));
+				throw new ArgumentNullException("nameof(entry)");
 			}
 
 			if (isDisposed_) {
@@ -1203,7 +1203,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			get { return bufferSize_; }
 			set {
 				if (value < 1024) {
-					throw new ArgumentOutOfRangeException(nameof(value), "cannot be below 1024");
+					throw new ArgumentOutOfRangeException("nameof(value)", "cannot be below 1024");
 				}
 
 				if (bufferSize_ != value) {
@@ -1232,7 +1232,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 		#region Immediate updating
 		//		TBD: Direct form of updating
-		// 
+		//
 		//		public void Update(IEntryMatcher deleteMatcher)
 		//		{
 		//		}
@@ -1254,11 +1254,11 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void BeginUpdate(IArchiveStorage archiveStorage, IDynamicDataSource dataSource)
 		{
 			if (archiveStorage == null) {
-				throw new ArgumentNullException(nameof(archiveStorage));
+				throw new ArgumentNullException("nameof(archiveStorage)");
 			}
 
 			if (dataSource == null) {
-				throw new ArgumentNullException(nameof(dataSource));
+				throw new ArgumentNullException("nameof(dataSource)");
 			}
 
 			if (isDisposed_) {
@@ -1435,7 +1435,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void Add(string fileName, CompressionMethod compressionMethod, bool useUnicodeText)
 		{
 			if (fileName == null) {
-				throw new ArgumentNullException(nameof(fileName));
+				throw new ArgumentNullException("nameof(fileName)");
 			}
 
 			if (isDisposed_) {
@@ -1443,7 +1443,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 
 			if (!ZipEntry.IsCompressionMethodSupported(compressionMethod)) {
-				throw new ArgumentOutOfRangeException(nameof(compressionMethod));
+				throw new ArgumentOutOfRangeException("nameof(compressionMethod)");
 			}
 
 			CheckUpdating();
@@ -1466,11 +1466,11 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void Add(string fileName, CompressionMethod compressionMethod)
 		{
 			if (fileName == null) {
-				throw new ArgumentNullException(nameof(fileName));
+				throw new ArgumentNullException("nameof(fileName)");
 			}
 
 			if (!ZipEntry.IsCompressionMethodSupported(compressionMethod)) {
-				throw new ArgumentOutOfRangeException(nameof(compressionMethod));
+				throw new ArgumentOutOfRangeException("nameof(compressionMethod)");
 			}
 
 			CheckUpdating();
@@ -1489,7 +1489,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void Add(string fileName)
 		{
 			if (fileName == null) {
-				throw new ArgumentNullException(nameof(fileName));
+				throw new ArgumentNullException("nameof(fileName)");
 			}
 
 			CheckUpdating();
@@ -1505,11 +1505,11 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void Add(string fileName, string entryName)
 		{
 			if (fileName == null) {
-				throw new ArgumentNullException(nameof(fileName));
+				throw new ArgumentNullException("nameof(fileName)");
 			}
 
 			if (entryName == null) {
-				throw new ArgumentNullException(nameof(entryName));
+				throw new ArgumentNullException("nameof(entryName)");
 			}
 
 			CheckUpdating();
@@ -1525,11 +1525,11 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void Add(IStaticDataSource dataSource, string entryName)
 		{
 			if (dataSource == null) {
-				throw new ArgumentNullException(nameof(dataSource));
+				throw new ArgumentNullException("nameof(dataSource)");
 			}
 
 			if (entryName == null) {
-				throw new ArgumentNullException(nameof(entryName));
+				throw new ArgumentNullException("nameof(entryName)");
 			}
 
 			CheckUpdating();
@@ -1545,11 +1545,11 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void Add(IStaticDataSource dataSource, string entryName, CompressionMethod compressionMethod)
 		{
 			if (dataSource == null) {
-				throw new ArgumentNullException(nameof(dataSource));
+				throw new ArgumentNullException("nameof(dataSource)");
 			}
 
 			if (entryName == null) {
-				throw new ArgumentNullException(nameof(entryName));
+				throw new ArgumentNullException("nameof(entryName)");
 			}
 
 			CheckUpdating();
@@ -1570,11 +1570,11 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void Add(IStaticDataSource dataSource, string entryName, CompressionMethod compressionMethod, bool useUnicodeText)
 		{
 			if (dataSource == null) {
-				throw new ArgumentNullException(nameof(dataSource));
+				throw new ArgumentNullException("nameof(dataSource)");
 			}
 
 			if (entryName == null) {
-				throw new ArgumentNullException(nameof(entryName));
+				throw new ArgumentNullException("nameof(entryName)");
 			}
 
 			CheckUpdating();
@@ -1594,7 +1594,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void Add(ZipEntry entry)
 		{
 			if (entry == null) {
-				throw new ArgumentNullException(nameof(entry));
+				throw new ArgumentNullException("nameof(entry)");
 			}
 
 			CheckUpdating();
@@ -1613,7 +1613,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void AddDirectory(string directoryName)
 		{
 			if (directoryName == null) {
-				throw new ArgumentNullException(nameof(directoryName));
+				throw new ArgumentNullException("nameof(directoryName)");
 			}
 
 			CheckUpdating();
@@ -1654,7 +1654,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public bool Delete(string fileName)
 		{
 			if (fileName == null) {
-				throw new ArgumentNullException(nameof(fileName));
+				throw new ArgumentNullException("nameof(fileName)");
 			}
 
 			CheckUpdating();
@@ -1679,7 +1679,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public void Delete(ZipEntry entry)
 		{
 			if (entry == null) {
-				throw new ArgumentNullException(nameof(entry));
+				throw new ArgumentNullException("nameof(entry)");
 			}
 
 			CheckUpdating();
@@ -2417,7 +2417,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			} else {
 				if (archiveStorage_.UpdateMode == FileUpdateMode.Direct) {
 					// TODO: archiveStorage wasnt originally intended for this use.
-					// Need to revisit this to tidy up handling as archive storage currently doesnt 
+					// Need to revisit this to tidy up handling as archive storage currently doesnt
 					// handle the original stream well.
 					// The problem is when using an existing zip archive with an in memory archive storage.
 					// The open stream wont support writing but the memory storage should open the same file not an in memory one.
@@ -2463,7 +2463,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		class UpdateComparer : IComparer<ZipUpdate>
 		{
 			/// <summary>
-			/// Compares two objects and returns a value indicating whether one is 
+			/// Compares two objects and returns a value indicating whether one is
 			/// less than, equal to or greater than the other.
 			/// </summary>
 			/// <param name="x">First object to compare</param>
@@ -2897,12 +2897,12 @@ namespace ICSharpCode.SharpZipLib.Zip
 		{
 			// Search for the End Of Central Directory.  When a zip comment is
 			// present the directory will start earlier
-			// 
+			//
 			// The search is limited to 64K which is the maximum size of a trailing comment field to aid speed.
 			// This should be compatible with both SFX and ZIP files but has only been tested for Zip files
 			// If a SFX file has the Zip data attached as a resource and there are other resources occuring later then
 			// this could be invalid.
-			// Could also speed this up by reading memory in larger blocks.			
+			// Could also speed this up by reading memory in larger blocks.
 
 			if (baseStream_.CanSeek == false) {
 				throw new ZipException("ZipFile stream must be seekable");
@@ -2949,9 +2949,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 					throw new ZipException("Cannot find Zip64 locator");
 				}
 
-				// number of the disk with the start of the zip64 end of central directory 4 bytes 
-				// relative offset of the zip64 end of central directory record 8 bytes 
-				// total number of disks 4 bytes 
+				// number of the disk with the start of the zip64 end of central directory 4 bytes
+				// relative offset of the zip64 end of central directory record 8 bytes
+				// total number of disks 4 bytes
 				ReadLEUint(); // startDisk64 is not currently used
 				ulong offset64 = ReadLEUlong();
 				uint totalDisks = ReadLEUint();

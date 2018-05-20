@@ -16,10 +16,10 @@ namespace ICSharpCode.SharpZipLib.GZip
 	/// <code>
 	/// using System;
 	/// using System.IO;
-	/// 
+	///
 	/// using ICSharpCode.SharpZipLib.GZip;
 	/// using ICSharpCode.SharpZipLib.Core;
-	/// 
+	///
 	/// class MainClass
 	/// {
 	/// 	public static void Main(string[] args)
@@ -31,7 +31,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 	/// 			}
 	/// 		}
 	/// 	}
-	/// }	
+	/// }
 	/// </code>
 	/// </example>
 	public class GZipOutputStream : DeflaterOutputStream
@@ -91,7 +91,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 		public void SetLevel(int level)
 		{
 			if (level < Deflater.BEST_SPEED) {
-				throw new ArgumentOutOfRangeException(nameof(level));
+				throw new ArgumentOutOfRangeException("nameof(level)");
 			}
 			deflater_.SetLevel(level);
 		}

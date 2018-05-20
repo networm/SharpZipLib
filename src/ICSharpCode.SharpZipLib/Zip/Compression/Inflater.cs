@@ -7,7 +7,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 	/// <summary>
 	/// Inflater is used to decompress data that has been compressed according
 	/// to the "deflate" standard described in rfc1951.
-	/// 
+	///
 	/// By default Zlib (rfc1950) headers and footers are expected in the input.
 	/// You can use constructor <code> public Inflater(bool noHeader)</code> passing true
 	/// if there is no Zlib header information
@@ -93,7 +93,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// The adler checksum of the dictionary or of the decompressed
 		/// stream, as it is written in the header resp. footer of the
-		/// compressed stream. 
+		/// compressed stream.
 		/// Only valid if mode is DECODE_DICT or DECODE_CHKSUM.
 		/// </summary>
 		int readAdler;
@@ -129,7 +129,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// This variable stores the noHeader flag that was given to the constructor.
-		/// True means, that the inflated stream doesn't contain a Zlib header or 
+		/// True means, that the inflated stream doesn't contain a Zlib header or
 		/// footer.
 		/// </summary>
 		bool noHeader;
@@ -154,9 +154,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// </summary>
 		/// <param name="noHeader">
 		/// True if no RFC1950/Zlib header and footer fields are expected in the input data
-		/// 
+		///
 		/// This is used for GZIPed/Zipped input.
-		/// 
+		///
 		/// For compatibility with
 		/// Sun JDK you should provide one byte of input more than needed in
 		/// this case.
@@ -531,15 +531,15 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		public void SetDictionary(byte[] buffer, int index, int count)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			if (index < 0) {
-				throw new ArgumentOutOfRangeException(nameof(index));
+				throw new ArgumentOutOfRangeException("nameof(index)");
 			}
 
 			if (count < 0) {
-				throw new ArgumentOutOfRangeException(nameof(count));
+				throw new ArgumentOutOfRangeException("nameof(count)");
 			}
 
 			if (!IsNeedingDictionary) {
@@ -615,7 +615,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		public int Inflate(byte[] buffer)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			return Inflate(buffer, 0, buffer.Length);
@@ -651,15 +651,15 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		public int Inflate(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			if (count < 0) {
-				throw new ArgumentOutOfRangeException(nameof(count), "count cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(count)", "count cannot be negative");
 			}
 
 			if (offset < 0) {
-				throw new ArgumentOutOfRangeException(nameof(offset), "offset cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(offset)", "offset cannot be negative");
 			}
 
 			if (offset + count > buffer.Length) {
@@ -703,7 +703,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// Returns true, if the input buffer is empty.
-		/// You should then call setInput(). 
+		/// You should then call setInput().
 		/// NOTE: This method also returns true when the stream is finished.
 		/// </summary>
 		public bool IsNeedingInput {

@@ -16,15 +16,15 @@ namespace ICSharpCode.SharpZipLib.Zip
 	/// <br/>
 	/// <br/>Author of the original java version : Jochen Hoenicke
 	/// </summary>
-	/// 
+	///
 	/// <example> This sample shows how to read a zip file
 	/// <code lang="C#">
 	/// using System;
 	/// using System.Text;
 	/// using System.IO;
-	/// 
+	///
 	/// using ICSharpCode.SharpZipLib.Zip;
-	/// 
+	///
 	/// class MainClass
 	/// {
 	/// 	public static void Main(string[] args)
@@ -34,7 +34,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 	/// 			ZipEntry theEntry;
 	/// 			const int size = 2048;
 	/// 			byte[] data = new byte[2048];
-	/// 			
+	///
 	/// 			while ((theEntry = s.GetNextEntry()) != null) {
 	///                 if ( entry.IsFile ) {
 	/// 				    Console.Write("Show contents (y/n) ?");
@@ -60,7 +60,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		#region Instance Fields
 
 		/// <summary>
-		/// Delegate for reading bytes from a stream. 
+		/// Delegate for reading bytes from a stream.
 		/// </summary>
 		delegate int ReadDataHandler(byte[] b, int offset, int length);
 
@@ -261,7 +261,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		}
 
 		/// <summary>
-		/// Read data descriptor at the end of compressed data. 
+		/// Read data descriptor at the end of compressed data.
 		/// </summary>
 		void ReadDataDescriptor()
 		{
@@ -428,7 +428,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		}
 
 		/// <summary>
-		/// Perform the initial read on an entry which may include 
+		/// Perform the initial read on an entry which may include
 		/// reading encryption headers and setting up inflation.
 		/// </summary>
 		/// <param name="destination">The destination to fill with data read.</param>
@@ -493,15 +493,15 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			if (offset < 0) {
-				throw new ArgumentOutOfRangeException(nameof(offset), "Cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(offset)", "Cannot be negative");
 			}
 
 			if (count < 0) {
-				throw new ArgumentOutOfRangeException(nameof(count), "Cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(count)", "Cannot be negative");
 			}
 
 			if ((buffer.Length - offset) < count) {

@@ -43,7 +43,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			/// Use a fixed value.
 			/// </summary>
 			/// <remarks>The actual <see cref="DateTime"/> value used can be
-			/// specified via the <see cref="ZipEntryFactory(DateTime)"/> constructor or 
+			/// specified via the <see cref="ZipEntryFactory(DateTime)"/> constructor or
 			/// using the <see cref="ZipEntryFactory(TimeSetting)"/> with the setting set
 			/// to <see cref="TimeSetting.Fixed"/> which will use the <see cref="DateTime"/> when this class was constructed.
 			/// The <see cref="FixedDateTime"/> property can also be used to set this value.</remarks>
@@ -117,7 +117,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			get { return fixedDateTime_; }
 			set {
 				if (value.Year < 1970) {
-					throw new ArgumentException("Value is too old to be valid", nameof(value));
+					throw new ArgumentException("Value is too old to be valid", "nameof(value)");
 				}
 				fixedDateTime_ = value;
 			}

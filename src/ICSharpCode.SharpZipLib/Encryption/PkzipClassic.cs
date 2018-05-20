@@ -6,7 +6,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 {
 	/// <summary>
 	/// PkzipClassic embodies the classic or original encryption facilities used in Pkzip archives.
-	/// While it has been superceded by more recent and more powerful algorithms, its still in use and 
+	/// While it has been superceded by more recent and more powerful algorithms, its still in use and
 	/// is viable for preventing casual snooping
 	/// </summary>
 	public abstract class PkzipClassic : SymmetricAlgorithm
@@ -19,11 +19,11 @@ namespace ICSharpCode.SharpZipLib.Encryption
 		static public byte[] GenerateKeys(byte[] seed)
 		{
 			if (seed == null) {
-				throw new ArgumentNullException(nameof(seed));
+				throw new ArgumentNullException("nameof(seed)");
 			}
 
 			if (seed.Length == 0) {
-				throw new ArgumentException("Length is zero", nameof(seed));
+				throw new ArgumentException("Length is zero", "nameof(seed)");
 			}
 
 			uint[] newKeys = {
@@ -63,7 +63,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 	class PkzipClassicCryptoBase
 	{
 		/// <summary>
-		/// Transform a single byte 
+		/// Transform a single byte
 		/// </summary>
 		/// <returns>
 		/// The transformed value
@@ -81,7 +81,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 		protected void SetKeys(byte[] keyData)
 		{
 			if (keyData == null) {
-				throw new ArgumentNullException(nameof(keyData));
+				throw new ArgumentNullException("nameof(keyData)");
 			}
 
 			if (keyData.Length != 12) {
@@ -95,8 +95,8 @@ namespace ICSharpCode.SharpZipLib.Encryption
 		}
 
 		/// <summary>
-		/// Update encryption keys 
-		/// </summary>		
+		/// Update encryption keys
+		/// </summary>
 		protected void UpdateKeys(byte ch)
 		{
 			keys[0] = Crc32.ComputeCrc32(keys[0], ch);
@@ -151,7 +151,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 		}
 
 		/// <summary>
-		/// Transforms the specified region of the input byte array and copies 
+		/// Transforms the specified region of the input byte array and copies
 		/// the resulting transform to the specified region of the output byte array.
 		/// </summary>
 		/// <param name="inputBuffer">The input for which to compute the transform.</param>
@@ -253,7 +253,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 		}
 
 		/// <summary>
-		/// Transforms the specified region of the input byte array and copies 
+		/// Transforms the specified region of the input byte array and copies
 		/// the resulting transform to the specified region of the output byte array.
 		/// </summary>
 		/// <param name="inputBuffer">The input for which to compute the transform.</param>
@@ -324,7 +324,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 	}
 
 	/// <summary>
-	/// Defines a wrapper object to access the Pkzip algorithm. 
+	/// Defines a wrapper object to access the Pkzip algorithm.
 	/// This class cannot be inherited.
 	/// </summary>
 	public sealed class PkzipClassicManaged : PkzipClassic
@@ -389,7 +389,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 
 			set {
 				if (value == null) {
-					throw new ArgumentNullException(nameof(value));
+					throw new ArgumentNullException("nameof(value)");
 				}
 
 				if (value.Length != 12) {

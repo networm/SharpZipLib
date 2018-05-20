@@ -9,7 +9,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 	///
 	/// This class is <i>not</i> thread safe.  This is inherent in the API, due
 	/// to the split of deflate and setInput.
-	/// 
+	///
 	/// author of the original java version : Jochen Hoenicke
 	/// </summary>
 	public class Deflater
@@ -169,7 +169,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			if (level == DEFAULT_COMPRESSION) {
 				level = 6;
 			} else if (level < NO_COMPRESSION || level > BEST_COMPRESSION) {
-				throw new ArgumentOutOfRangeException(nameof(level));
+				throw new ArgumentOutOfRangeException("nameof(level)");
 			}
 
 			pending = new DeflaterPending();
@@ -255,7 +255,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// Returns true, if the input buffer is empty.
-		/// You should then call setInput(). 
+		/// You should then call setInput().
 		/// NOTE: This method can also return true when the stream
 		/// was finished.
 		/// </summary>
@@ -325,7 +325,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			if (level == DEFAULT_COMPRESSION) {
 				level = 6;
 			} else if (level < NO_COMPRESSION || level > BEST_COMPRESSION) {
-				throw new ArgumentOutOfRangeException(nameof(level));
+				throw new ArgumentOutOfRangeException("nameof(level)");
 			}
 
 			if (this.level != level) {

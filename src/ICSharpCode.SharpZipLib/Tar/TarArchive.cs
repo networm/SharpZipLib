@@ -19,12 +19,12 @@ namespace ICSharpCode.SharpZipLib.Tar
 	/// header followed by the number of blocks needed to
 	/// contain the file's contents. All entries are written on
 	/// block boundaries. Blocks are 512 bytes long.
-	/// 
+	///
 	/// TarArchives are instantiated in either read or write mode,
 	/// based upon whether they are instantiated with an InputStream
 	/// or an OutputStream. Once instantiated TarArchives read/write
 	/// mode can not be changed.
-	/// 
+	///
 	/// There is currently no support for random access to tar archives.
 	/// However, it seems that subclassing TarArchive, and using the
 	/// TarBuffer.CurrentRecord and TarBuffer.CurrentBlock
@@ -65,7 +65,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		protected TarArchive(TarInputStream stream)
 		{
 			if (stream == null) {
-				throw new ArgumentNullException(nameof(stream));
+				throw new ArgumentNullException("nameof(stream)");
 			}
 
 			tarIn = stream;
@@ -74,11 +74,11 @@ namespace ICSharpCode.SharpZipLib.Tar
 		/// <summary>
 		/// Initialise a TarArchive for output.
 		/// </summary>
-		/// <param name="stream">The <see cref="TarOutputStream"/> to use for output.</param> 
+		/// <param name="stream">The <see cref="TarOutputStream"/> to use for output.</param>
 		protected TarArchive(TarOutputStream stream)
 		{
 			if (stream == null) {
-				throw new ArgumentNullException(nameof(stream));
+				throw new ArgumentNullException("nameof(stream)");
 			}
 
 			tarOut = stream;
@@ -97,7 +97,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public static TarArchive CreateInputTarArchive(Stream inputStream)
 		{
 			if (inputStream == null) {
-				throw new ArgumentNullException(nameof(inputStream));
+				throw new ArgumentNullException("nameof(inputStream)");
 			}
 
 			var tarStream = inputStream as TarInputStream;
@@ -120,7 +120,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public static TarArchive CreateInputTarArchive(Stream inputStream, int blockFactor)
 		{
 			if (inputStream == null) {
-				throw new ArgumentNullException(nameof(inputStream));
+				throw new ArgumentNullException("nameof(inputStream)");
 			}
 
 			if (inputStream is TarInputStream) {
@@ -138,7 +138,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public static TarArchive CreateOutputTarArchive(Stream outputStream)
 		{
 			if (outputStream == null) {
-				throw new ArgumentNullException(nameof(outputStream));
+				throw new ArgumentNullException("nameof(outputStream)");
 			}
 
 			var tarStream = outputStream as TarOutputStream;
@@ -161,7 +161,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public static TarArchive CreateOutputTarArchive(Stream outputStream, int blockFactor)
 		{
 			if (outputStream == null) {
-				throw new ArgumentNullException(nameof(outputStream));
+				throw new ArgumentNullException("nameof(outputStream)");
 			}
 
 			if (outputStream is TarOutputStream) {
@@ -190,8 +190,8 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 		/// <summary>
 		/// Get/set the ascii file translation flag. If ascii file translation
-		/// is true, then the file is checked to see if it a binary file or not. 
-		/// If the flag is true and the test indicates it is ascii text 
+		/// is true, then the file is checked to see if it a binary file or not.
+		/// If the flag is true and the test indicates it is ascii text
 		/// file, it will be translated. The translation converts the local
 		/// operating system's concept of line ends into the UNIX line end,
 		/// '\n', which is the defacto standard for a TAR archive. This makes
@@ -234,7 +234,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 		/// <summary>
 		/// PathPrefix is added to entry names as they are written if the value is not null.
-		/// A slash character is appended after PathPrefix 
+		/// A slash character is appended after PathPrefix
 		/// </summary>
 		public string PathPrefix {
 			get {
@@ -279,7 +279,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 		/// <summary>
 		/// Set user and group information that will be used to fill in the
-		/// tar archive's entry headers. This information is based on that available 
+		/// tar archive's entry headers. This information is based on that available
 		/// for the linux operating system, which is not always available on other
 		/// operating systems.  TarArchive allows the programmer to specify values
 		/// to be used in their place.
@@ -454,7 +454,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 		/// <summary>
 		/// Perform the "list" command for the archive contents.
-		/// 
+		///
 		/// NOTE That this method uses the <see cref="ProgressMessageEvent"> progress event</see> to actually list
 		/// the contents. If the progress display event is not set, nothing will be listed!
 		/// </summary>
@@ -604,7 +604,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public void WriteEntry(TarEntry sourceEntry, bool recurse)
 		{
 			if (sourceEntry == null) {
-				throw new ArgumentNullException(nameof(sourceEntry));
+				throw new ArgumentNullException("nameof(sourceEntry)");
 			}
 
 			if (isDisposed) {

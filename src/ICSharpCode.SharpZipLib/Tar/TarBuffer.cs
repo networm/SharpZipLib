@@ -121,7 +121,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public static TarBuffer CreateInputTarBuffer(Stream inputStream)
 		{
 			if (inputStream == null) {
-				throw new ArgumentNullException(nameof(inputStream));
+				throw new ArgumentNullException("nameof(inputStream)");
 			}
 
 			return CreateInputTarBuffer(inputStream, DefaultBlockFactor);
@@ -136,11 +136,11 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public static TarBuffer CreateInputTarBuffer(Stream inputStream, int blockFactor)
 		{
 			if (inputStream == null) {
-				throw new ArgumentNullException(nameof(inputStream));
+				throw new ArgumentNullException("nameof(inputStream)");
 			}
 
 			if (blockFactor <= 0) {
-				throw new ArgumentOutOfRangeException(nameof(blockFactor), "Factor cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(blockFactor)", "Factor cannot be negative");
 			}
 
 			var tarBuffer = new TarBuffer();
@@ -159,7 +159,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public static TarBuffer CreateOutputTarBuffer(Stream outputStream)
 		{
 			if (outputStream == null) {
-				throw new ArgumentNullException(nameof(outputStream));
+				throw new ArgumentNullException("nameof(outputStream)");
 			}
 
 			return CreateOutputTarBuffer(outputStream, DefaultBlockFactor);
@@ -174,11 +174,11 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public static TarBuffer CreateOutputTarBuffer(Stream outputStream, int blockFactor)
 		{
 			if (outputStream == null) {
-				throw new ArgumentNullException(nameof(outputStream));
+				throw new ArgumentNullException("nameof(outputStream)");
 			}
 
 			if (blockFactor <= 0) {
-				throw new ArgumentOutOfRangeException(nameof(blockFactor), "Factor cannot be negative");
+				throw new ArgumentOutOfRangeException("nameof(blockFactor)", "Factor cannot be negative");
 			}
 
 			var tarBuffer = new TarBuffer();
@@ -220,7 +220,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public bool IsEOFBlock(byte[] block)
 		{
 			if (block == null) {
-				throw new ArgumentNullException(nameof(block));
+				throw new ArgumentNullException("nameof(block)");
 			}
 
 			if (block.Length != BlockSize) {
@@ -249,7 +249,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public static bool IsEndOfArchiveBlock(byte[] block)
 		{
 			if (block == null) {
-				throw new ArgumentNullException(nameof(block));
+				throw new ArgumentNullException("nameof(block)");
 			}
 
 			if (block.Length != BlockSize) {
@@ -420,7 +420,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public void WriteBlock(byte[] block)
 		{
 			if (block == null) {
-				throw new ArgumentNullException(nameof(block));
+				throw new ArgumentNullException("nameof(block)");
 			}
 
 			if (outputStream == null) {
@@ -455,7 +455,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public void WriteBlock(byte[] buffer, int offset)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			if (outputStream == null) {
@@ -463,7 +463,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 
 			if ((offset < 0) || (offset >= buffer.Length)) {
-				throw new ArgumentOutOfRangeException(nameof(offset));
+				throw new ArgumentOutOfRangeException("nameof(offset)");
 			}
 
 			if ((offset + BlockSize) > buffer.Length) {

@@ -64,19 +64,19 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		public DeflaterOutputStream(Stream baseOutputStream, Deflater deflater, int bufferSize)
 		{
 			if (baseOutputStream == null) {
-				throw new ArgumentNullException(nameof(baseOutputStream));
+				throw new ArgumentNullException("nameof(baseOutputStream)");
 			}
 
 			if (baseOutputStream.CanWrite == false) {
-				throw new ArgumentException("Must support writing", nameof(baseOutputStream));
+				throw new ArgumentException("Must support writing", "nameof(baseOutputStream)");
 			}
 
 			if (deflater == null) {
-				throw new ArgumentNullException(nameof(deflater));
+				throw new ArgumentNullException("nameof(deflater)");
 			}
 
 			if (bufferSize < 512) {
-				throw new ArgumentOutOfRangeException(nameof(bufferSize));
+				throw new ArgumentOutOfRangeException("nameof(bufferSize)");
 			}
 
 			baseOutputStream_ = baseOutputStream;

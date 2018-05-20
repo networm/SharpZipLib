@@ -38,7 +38,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		Stored = 0,
 
 		/// <summary>
-		/// Common Zip compression method using a sliding dictionary 
+		/// Common Zip compression method using a sliding dictionary
 		/// of up to 32KB and secondary compression from Huffman/Shannon-Fano trees
 		/// </summary>
 		Deflated = 8,
@@ -171,7 +171,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		/// </summary>
 		Unused10 = 0x0400,
 		/// <summary>
-		/// Bit 11 if set indicates the filename and 
+		/// Bit 11 if set indicates the filename and
 		/// comment fields for this file must be encoded using UTF-8.
 		/// </summary>
 		UnicodeText = 0x0800,
@@ -422,9 +422,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 		#endregion
 
 		/// <remarks>
-		/// The original Zip specification (https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT) states 
-		/// that file names should only be encoded with IBM Code Page 437 or UTF-8. 
-		/// In practice, most zip apps use OEM or system encoding (typically cp437 on Windows). 
+		/// The original Zip specification (https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT) states
+		/// that file names should only be encoded with IBM Code Page 437 or UTF-8.
+		/// In practice, most zip apps use OEM or system encoding (typically cp437 on Windows).
 		/// Let's be good citizens and default to UTF-8 http://utf8everywhere.org/
 		/// </remarks>
 		static int defaultCodePage = Encoding.UTF8.CodePage;
@@ -442,7 +442,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			set {
 				if ((value < 0) || (value > 65535) ||
 					(value == 1) || (value == 2) || (value == 3) || (value == 42)) {
-					throw new ArgumentOutOfRangeException(nameof(value));
+					throw new ArgumentOutOfRangeException("nameof(value)");
 				}
 
 				defaultCodePage = value;
@@ -451,7 +451,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 		/// <summary>
 		/// Convert a portion of a byte array to a string.
-		/// </summary>		
+		/// </summary>
 		/// <param name="data">
 		/// Data to convert to string
 		/// </param>

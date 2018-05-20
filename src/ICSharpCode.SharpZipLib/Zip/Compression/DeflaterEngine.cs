@@ -29,17 +29,17 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 	}
 
 	// DEFLATE ALGORITHM:
-	// 
+	//
 	// The uncompressed stream is inserted into the window array.  When
 	// the window array is full the first half is thrown away and the
 	// second half is copied to the beginning.
 	//
 	// The head array is a hash table.  Three characters build a hash value
-	// and they the value points to the corresponding index in window of 
+	// and they the value points to the corresponding index in window of
 	// the last string with this hash.  The prev array implements a
 	// linked list of matches with the same hash: prev[index & WMASK] points
 	// to the previous index with the same hash.
-	// 
+	//
 
 
 	/// <summary>
@@ -122,15 +122,15 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		public void SetInput(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			if (offset < 0) {
-				throw new ArgumentOutOfRangeException(nameof(offset));
+				throw new ArgumentOutOfRangeException("nameof(offset)");
 			}
 
 			if (count < 0) {
-				throw new ArgumentOutOfRangeException(nameof(count));
+				throw new ArgumentOutOfRangeException("nameof(count)");
 			}
 
 			if (inputOff < inputEnd) {
@@ -143,7 +143,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			* check is very tricky: it also handles integer wrap around.
 			*/
 			if ((offset > end) || (end > buffer.Length)) {
-				throw new ArgumentOutOfRangeException(nameof(count));
+				throw new ArgumentOutOfRangeException("nameof(count)");
 			}
 
 			inputBuf = buffer;
@@ -153,7 +153,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// Determines if more <see cref="SetInput">input</see> is needed.
-		/// </summary>		
+		/// </summary>
 		/// <returns>Return true if input is needed via <see cref="SetInput">SetInput</see></returns>
 		public bool NeedsInput()
 		{
@@ -169,7 +169,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		public void SetDictionary(byte[] buffer, int offset, int length)
 		{
 #if DebugDeflation
-			if (DeflaterConstants.DEBUGGING && (strstart != 1) ) 
+			if (DeflaterConstants.DEBUGGING && (strstart != 1) )
 			{
 				throw new InvalidOperationException("strstart not 1");
 			}
@@ -198,7 +198,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// Reset internal state
-		/// </summary>		
+		/// </summary>
 		public void Reset()
 		{
 			huffman.Reset();
@@ -220,7 +220,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// Reset Adler checksum
-		/// </summary>		
+		/// </summary>
 		public void ResetAdler()
 		{
 			adler.Reset();
@@ -228,7 +228,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// Get current value of Adler checksum
-		/// </summary>		
+		/// </summary>
 		public int Adler {
 			get {
 				return unchecked((int)adler.Value);
@@ -237,7 +237,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// Total data processed
-		/// </summary>		
+		/// </summary>
 		public long TotalIn {
 			get {
 				return totalIn;
@@ -246,7 +246,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// Get/set the <see cref="DeflateStrategy">deflate strategy</see>
-		/// </summary>		
+		/// </summary>
 		public DeflateStrategy Strategy {
 			get {
 				return strategy;
@@ -263,7 +263,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		public void SetLevel(int level)
 		{
 			if ((level < 0) || (level > 9)) {
-				throw new ArgumentOutOfRangeException(nameof(level));
+				throw new ArgumentOutOfRangeException("nameof(level)");
 			}
 
 			goodLength = DeflaterConstants.GOOD_LENGTH[level];
@@ -369,10 +369,10 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			int hash = ((ins_h << DeflaterConstants.HASH_SHIFT) ^ window[strstart + (DeflaterConstants.MIN_MATCH - 1)]) & DeflaterConstants.HASH_MASK;
 
 #if DebugDeflation
-			if (DeflaterConstants.DEBUGGING) 
+			if (DeflaterConstants.DEBUGGING)
 			{
-				if (hash != (((window[strstart] << (2*HASH_SHIFT)) ^ 
-								  (window[strstart + 1] << HASH_SHIFT) ^ 
+				if (hash != (((window[strstart] << (2*HASH_SHIFT)) ^
+								  (window[strstart + 1] << HASH_SHIFT) ^
 								  (window[strstart + 2])) & HASH_MASK)) {
 						throw new SharpZipBaseException("hash inconsistent: " + hash + "/"
 												+window[strstart] + ","
@@ -409,7 +409,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		}
 
 		/// <summary>
-		/// Find the best (longest) string in the window matching the 
+		/// Find the best (longest) string in the window matching the
 		/// string starting at strstart.
 		///
 		/// Preconditions:
@@ -536,7 +536,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
               if (matchLen >= niceLength)
                 break;
-          
+
               scan_end1 = window[scan - 1];
               scan_end = window[scan];
             }
@@ -566,7 +566,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				}
 
 #if DebugDeflation
-				if (DeflaterConstants.DEBUGGING) 
+				if (DeflaterConstants.DEBUGGING)
 				{
 				   Console.WriteLine("storedBlock[" + storedLength + "," + lastBlock + "]");
 				}
@@ -609,7 +609,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 					FindLongestMatch(hashHead)) {
 					// longestMatch sets matchStart and matchLen
 #if DebugDeflation
-					if (DeflaterConstants.DEBUGGING) 
+					if (DeflaterConstants.DEBUGGING)
 					{
 						for (int i = 0 ; i < matchLen; i++) {
 							if (window[strstart + i] != window[matchStart + i]) {
@@ -670,7 +670,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 					// We are flushing everything
 #if DebugDeflation
-					if (DeflaterConstants.DEBUGGING && !flush) 
+					if (DeflaterConstants.DEBUGGING && !flush)
 					{
 						throw new SharpZipBaseException("Not flushing, but no lookahead");
 					}
@@ -712,7 +712,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 				// previous match was better
 				if ((prevLen >= DeflaterConstants.MIN_MATCH) && (matchLen <= prevLen)) {
 #if DebugDeflation
-					if (DeflaterConstants.DEBUGGING) 
+					if (DeflaterConstants.DEBUGGING)
 					{
 					   for (int i = 0 ; i < matchLen; i++) {
 						  if (window[strstart-1+i] != window[prevMatch + i])
@@ -764,7 +764,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// Hashtable, hashing three characters to an index for window, so
-		/// that window[index]..window[index+2] have this hash code.  
+		/// that window[index]..window[index+2] have this hash code.
 		/// Note that the array should really be unsigned short, so you need
 		/// to and the values with 0xffff.
 		/// </summary>
@@ -772,7 +772,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 
 		/// <summary>
 		/// <code>prev[index &amp; WMASK]</code> points to the previous index that has the
-		/// same hash code as the string starting at index.  This way 
+		/// same hash code as the string starting at index.  This way
 		/// entries with the same hash code are in a linked list.
 		/// Note that the array should really be unsigned short, so you need
 		/// to and the values with 0xffff.
@@ -800,7 +800,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		int lookahead;
 
 		/// <summary>
-		/// This array contains the part of the uncompressed stream that 
+		/// This array contains the part of the uncompressed stream that
 		/// is of relevance.  The current character is indexed by strstart.
 		/// </summary>
 		byte[] window;

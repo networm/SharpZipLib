@@ -13,7 +13,7 @@ namespace ICSharpCode.SharpZipLib.Core
 	/// To include a semi-colon it may be quoted as in \;. Each expression can be prefixed by a plus '+' sign or
 	/// a minus '-' sign to denote the expression is intended to include or exclude names.
 	/// If neither a plus or minus sign is found include is the default.
-	/// A given name is tested for inclusion before checking exclusions.  Only names matching an include spec 
+	/// A given name is tested for inclusion before checking exclusions.  Only names matching an include spec
 	/// and not matching an exclude spec are deemed to match the filter.
 	/// An empty filter matches any name.
 	/// </summary>
@@ -110,7 +110,7 @@ namespace ICSharpCode.SharpZipLib.Core
 					} else if (original[endIndex] == escape) {
 						endIndex += 1;
 						if (endIndex >= original.Length) {
-							throw new ArgumentException("Missing terminating escape character", nameof(original));
+							throw new ArgumentException("Missing terminating escape character", "nameof(original)");
 						}
 						// include escape if this is not an escaped separator
 						if (Array.IndexOf(separators, original[endIndex]) < 0)

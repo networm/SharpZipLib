@@ -61,7 +61,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public TarEntry(TarHeader header)
 		{
 			if (header == null) {
-				throw new ArgumentNullException(nameof(header));
+				throw new ArgumentNullException("nameof(header)");
 			}
 
 			this.header = (TarHeader)header.Clone();
@@ -85,7 +85,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 
 		/// <summary>
 		/// Construct an entry with only a <paramref name="name">name</paramref>.
-		/// This allows the programmer to construct the entry's header "by hand". 
+		/// This allows the programmer to construct the entry's header "by hand".
 		/// </summary>
 		/// <param name="name">The name to use for the entry</param>
 		/// <returns>Returns the newly created <see cref="TarEntry"/></returns>
@@ -150,7 +150,7 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public bool IsDescendent(TarEntry toTest)
 		{
 			if (toTest == null) {
-				throw new ArgumentNullException(nameof(toTest));
+				throw new ArgumentNullException("nameof(toTest)");
 			}
 
 			return toTest.Name.StartsWith(Name, StringComparison.Ordinal);
@@ -327,11 +327,11 @@ namespace ICSharpCode.SharpZipLib.Tar
 		public void GetFileTarHeader(TarHeader header, string file)
 		{
 			if (header == null) {
-				throw new ArgumentNullException(nameof(header));
+				throw new ArgumentNullException("nameof(header)");
 			}
 
 			if (file == null) {
-				throw new ArgumentNullException(nameof(file));
+				throw new ArgumentNullException("nameof(file)");
 			}
 
 			this.file = file;
@@ -345,16 +345,16 @@ namespace ICSharpCode.SharpZipLib.Tar
 			}
 
 			/*
-						if (Path.DirectorySeparatorChar == '\\') 
+						if (Path.DirectorySeparatorChar == '\\')
 						{
 							// check if the OS is Windows
 							// Strip off drive letters!
-							if (name.Length > 2) 
+							if (name.Length > 2)
 							{
 								char ch1 = name[0];
 								char ch2 = name[1];
 
-								if (ch2 == ':' && Char.IsLetter(ch1)) 
+								if (ch2 == ':' && Char.IsLetter(ch1))
 								{
 									name = name.Substring(2);
 								}
@@ -454,11 +454,11 @@ namespace ICSharpCode.SharpZipLib.Tar
 		static public void NameTarHeader(TarHeader header, string name)
 		{
 			if (header == null) {
-				throw new ArgumentNullException(nameof(header));
+				throw new ArgumentNullException("nameof(header)");
 			}
 
 			if (name == null) {
-				throw new ArgumentNullException(nameof(name));
+				throw new ArgumentNullException("nameof(name)");
 			}
 
 			bool isDir = name.EndsWith("/", StringComparison.Ordinal);

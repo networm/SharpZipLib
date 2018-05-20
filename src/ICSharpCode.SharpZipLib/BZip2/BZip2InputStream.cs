@@ -92,7 +92,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		public BZip2InputStream(Stream stream)
 		{
 			if (stream == null)
-				throw new ArgumentNullException(nameof(stream));
+				throw new ArgumentNullException("nameof(stream)");
 			// init arrays
 			for (int i = 0; i < BZip2Constants.GroupCount; ++i) {
 				limit[i] = new int[BZip2Constants.MaximumAlphaSize];
@@ -239,7 +239,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		public override int Read(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			for (int i = 0; i < count; ++i) {

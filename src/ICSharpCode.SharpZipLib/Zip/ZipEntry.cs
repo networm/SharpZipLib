@@ -97,7 +97,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 	/// <summary>
 	/// This class represents an entry in a zip archive.  This can be a file
 	/// or a directory
-	/// ZipFile and ZipInputStream will give you instances of this class as 
+	/// ZipFile and ZipInputStream will give you instances of this class as
 	/// information about the members in an archive.  ZipOutputStream
 	/// uses an instance of this class when creating an entry in a Zip file.
 	/// <br/>
@@ -138,7 +138,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		/// </summary>
 		/// <param name="name">
 		/// The name for this entry. Can include directory components.
-		/// The convention for names is 'unix'  style paths with no device names and 
+		/// The convention for names is 'unix'  style paths with no device names and
 		/// path elements separated by '/' characters.  This is not enforced see <see cref="CleanName(string)">CleanName</see>
 		/// on how to ensure names are valid if this is desired.
 		/// </param>
@@ -175,15 +175,15 @@ namespace ICSharpCode.SharpZipLib.Zip
 			CompressionMethod method)
 		{
 			if (name == null) {
-				throw new ArgumentNullException(nameof(name));
+				throw new ArgumentNullException("nameof(name)");
 			}
 
 			if (name.Length > 0xffff) {
-				throw new ArgumentException("Name is too long", nameof(name));
+				throw new ArgumentException("Name is too long", "nameof(name)");
 			}
 
 			if ((versionRequiredToExtract != 0) && (versionRequiredToExtract < 10)) {
-				throw new ArgumentOutOfRangeException(nameof(versionRequiredToExtract));
+				throw new ArgumentOutOfRangeException("nameof(versionRequiredToExtract)");
 			}
 
 			this.DateTime = DateTime.Now;
@@ -203,7 +203,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		public ZipEntry(ZipEntry entry)
 		{
 			if (entry == null) {
-				throw new ArgumentNullException(nameof(entry));
+				throw new ArgumentNullException("nameof(entry)");
 			}
 
 			known = entry.known;
@@ -377,7 +377,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 		/// <summary>
 		/// Get the version made by for this entry or zero if unknown.
-		/// The value / 10 indicates the major version number, and 
+		/// The value / 10 indicates the major version number, and
 		/// the value mod 10 is the minor version number
 		/// </summary>
 		public int VersionMadeBy {
@@ -402,7 +402,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		/// and match the values
 		/// </summary>
 		/// <param name="attributes">The attributes to test.</param>
-		/// <returns>Returns true if the external attributes are known to be DOS/Windows 
+		/// <returns>Returns true if the external attributes are known to be DOS/Windows
 		/// based and have the same attributes set as the value passed.</returns>
 		bool HasDosAttributes(int attributes)
 		{
@@ -421,7 +421,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		/// by PKZIP for DOS version 2.04g then this value will be zero.  Otherwise the value
 		/// will be non-zero and identify the host system on which the attributes are compatible.
 		/// </summary>
-		/// 		
+		///
 		/// <remarks>
 		/// The values for this as defined in the Zip File format and by others are shown below.  The values are somewhat
 		/// misleading in some cases as they are not all used as shown.  You should consult the relevant documentation
@@ -465,7 +465,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 		/// <summary>
 		/// Get minimum Zip feature version required to extract this entry
-		/// </summary>		
+		/// </summary>
 		/// <remarks>
 		/// Minimum features are defined as:<br/>
 		/// 1.0 - Default value<br/>
@@ -521,7 +521,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		/// <summary>
 		/// Get a value indicating whether this entry can be decompressed by the library.
 		/// </summary>
-		/// <remarks>This is based on the <see cref="Version"></see> and 
+		/// <remarks>This is based on the <see cref="Version"></see> and
 		/// wether the <see cref="IsCompressionMethodSupported()">compression method</see> is supported.</remarks>
 		public bool CanDecompress {
 			get {
@@ -553,7 +553,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		}
 
 		/// <summary>
-		/// Gets a value indicating if the entry requires Zip64 extensions 
+		/// Gets a value indicating if the entry requires Zip64 extensions
 		/// to store the full entry values.
 		/// </summary>
 		/// <value>A <see cref="bool"/> value of true if a local header requires Zip64 extensions; false if not.</value>
@@ -728,7 +728,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 			}
 			set {
 				if (((ulong)crc & 0xffffffff00000000L) != 0) {
-					throw new ArgumentOutOfRangeException(nameof(value));
+					throw new ArgumentOutOfRangeException("nameof(value)");
 				}
 				this.crc = (uint)value;
 				this.known |= Known.Crc;
@@ -789,7 +789,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 					extra = null;
 				} else {
 					if (value.Length > 0xffff) {
-						throw new System.ArgumentOutOfRangeException(nameof(value));
+						throw new System.ArgumentOutOfRangeException("nameof(value)");
 					}
 
 					extra = new byte[value.Length];
@@ -847,7 +847,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		}
 
 		/// <summary>
-		/// Returns the length of the salt, in bytes 
+		/// Returns the length of the salt, in bytes
 		/// </summary>
 		internal int AESSaltLen {
 			get {
@@ -892,29 +892,29 @@ namespace ICSharpCode.SharpZipLib.Zip
 					throw new ZipException("Extra data extended Zip64 information length is invalid");
 				}
 
-				// (localHeader ||) was deleted, because actually there is no specific difference with reading sizes between local header & central directory 
-				// https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT 
+				// (localHeader ||) was deleted, because actually there is no specific difference with reading sizes between local header & central directory
+				// https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT
 				// ...
 				// 4.4  Explanation of fields
 				// ...
 				//	4.4.8 compressed size: (4 bytes)
 				//	4.4.9 uncompressed size: (4 bytes)
-				// 
+				//
 				//		The size of the file compressed (4.4.8) and uncompressed,
-				//		(4.4.9) respectively.  When a decryption header is present it 
+				//		(4.4.9) respectively.  When a decryption header is present it
 				//		will be placed in front of the file data and the value of the
 				//		compressed file size will include the bytes of the decryption
-				//		header.  If bit 3 of the general purpose bit flag is set, 
-				//		these fields are set to zero in the local header and the 
+				//		header.  If bit 3 of the general purpose bit flag is set,
+				//		these fields are set to zero in the local header and the
 				//		correct values are put in the data descriptor and
 				//		in the central directory.  If an archive is in ZIP64 format
 				//		and the value in this field is 0xFFFFFFFF, the size will be
-				//		in the corresponding 8 byte ZIP64 extended information 
+				//		in the corresponding 8 byte ZIP64 extended information
 				//		extra field.  When encrypting the central directory, if the
-				//		local header is not in ZIP64 format and general purpose bit 
-				//		flag 13 is set indicating masking, the value stored for the 
-				//		uncompressed size in the Local Header will be zero. 
-				// 
+				//		local header is not in ZIP64 format and general purpose bit
+				//		flag 13 is set indicating masking, the value stored for the
+				//		uncompressed size in the Local Header will be zero.
+				//
 				// Othewise there is problem with minizip implementation
 				if (size == uint.MaxValue) {
 					size = (ulong)extraData.ReadLong();
@@ -1019,13 +1019,13 @@ namespace ICSharpCode.SharpZipLib.Zip
 			set {
 				// This test is strictly incorrect as the length is in characters
 				// while the storage limit is in bytes.
-				// While the test is partially correct in that a comment of this length or greater 
+				// While the test is partially correct in that a comment of this length or greater
 				// is definitely invalid, shorter comments may also have an invalid length
 				// where there are multi-byte characters
 				// The full test is not possible here however as the code page to apply conversions with
 				// isnt available.
 				if ((value != null) && (value.Length > 0xffff)) {
-					throw new ArgumentOutOfRangeException(nameof(value), "cannot exceed 65535");
+					throw new ArgumentOutOfRangeException("nameof(value)", "cannot exceed 65535");
 				}
 
 				comment = value;

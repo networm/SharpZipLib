@@ -140,14 +140,14 @@ namespace ICSharpCode.SharpZipLib.Checksum
 		}
 
 		/// <summary>
-		/// Updates the CRC data checksum with the bytes taken from 
+		/// Updates the CRC data checksum with the bytes taken from
 		/// a block of data.
 		/// </summary>
 		/// <param name="buffer">Contains the data to update the CRC with.</param>
 		public void Update(byte[] buffer)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			Update(buffer, 0, buffer.Length);
@@ -162,23 +162,23 @@ namespace ICSharpCode.SharpZipLib.Checksum
 		public void Update(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null) {
-				throw new ArgumentNullException(nameof(buffer));
+				throw new ArgumentNullException("nameof(buffer)");
 			}
 
 			if (offset < 0) {
-				throw new ArgumentOutOfRangeException(nameof(offset), "cannot be less than zero");
+				throw new ArgumentOutOfRangeException("nameof(offset)", "cannot be less than zero");
 			}
 
 			if (offset >= buffer.Length) {
-				throw new ArgumentOutOfRangeException(nameof(offset), "not a valid index into buffer");
+				throw new ArgumentOutOfRangeException("nameof(offset)", "not a valid index into buffer");
 			}
 
 			if (count < 0) {
-				throw new ArgumentOutOfRangeException(nameof(count), "cannot be less than zero");
+				throw new ArgumentOutOfRangeException("nameof(count)", "cannot be less than zero");
 			}
 
 			if (offset + count > buffer.Length) {
-				throw new ArgumentOutOfRangeException(nameof(count), "exceeds buffer size");
+				throw new ArgumentOutOfRangeException("nameof(count)", "exceeds buffer size");
 			}
 
 			for (int i = 0; i < count; ++i) {
