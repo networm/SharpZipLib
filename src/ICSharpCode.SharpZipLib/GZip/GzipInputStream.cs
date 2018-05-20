@@ -10,17 +10,17 @@ namespace ICSharpCode.SharpZipLib.GZip
 	/// <summary>
 	/// This filter stream is used to decompress a "GZIP" format stream.
 	/// The "GZIP" format is described baseInputStream RFC 1952.
-	/// 
+	///
 	/// author of the original java version : John Leuner
 	/// </summary>
 	/// <example> This sample shows how to unzip a gzipped file
 	/// <code>
 	/// using System;
 	/// using System.IO;
-	/// 
+	///
 	/// using ICSharpCode.SharpZipLib.Core;
 	/// using ICSharpCode.SharpZipLib.GZip;
-	/// 
+	///
 	/// class MainClass
 	/// {
 	/// 	public static void Main(string[] args)
@@ -31,7 +31,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 	///				StreamUtils.Copy(inStream, outStream, buffer);
 	/// 		}
 	/// 	}
-	/// }	
+	/// }
 	/// </code>
 	/// </example>
 	public class GZipInputStream : InflaterInputStream
@@ -115,12 +115,17 @@ namespace ICSharpCode.SharpZipLib.GZip
                             return 0;
                         }
                     }
-                    catch (Exception ex) when (completedLastBlock && (ex is GZipException || ex is EndOfStreamException))
+                    catch (Exception ex)
                     {
-                        // if we completed the last block (i.e. we're in a stream that has multiple blocks concatenated
-                        // we want to return gracefully from any header parsing exceptions since sometimes there may
-                        // be trailing garbage on a stream
-                        return 0;
+	                    if (completedLastBlock && (ex is GZipException || ex is EndOfStreamException))
+	                    {
+                            // if we completed the last block (i.e. we're in a stream that has multiple blocks concatenated
+                            // we want to return gracefully from any header parsing exceptions since sometimes there may
+                            // be trailing garbage on a stream
+                            return 0;
+	                    }
+
+	                    throw;
                     }
                 }
 

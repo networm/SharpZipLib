@@ -5,7 +5,7 @@ using ICSharpCode.SharpZipLib.Checksum;
 namespace ICSharpCode.SharpZipLib.BZip2
 {
 	/// <summary>
-	/// An input stream that decompresses files in the BZip2 format 
+	/// An input stream that decompresses files in the BZip2 format
 	/// </summary>
 	public class BZip2InputStream : Stream
 	{
@@ -112,7 +112,12 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		/// Get/set flag indicating ownership of underlying stream.
 		/// When the flag is true <see cref="Stream.Dispose()" /> will close the underlying stream also.
 		/// </summary>
-		public bool IsStreamOwner { get; set; } = true;
+		private bool isStreamOwner = true;
+		public bool IsStreamOwner
+		{
+			get { return isStreamOwner; }
+			set { isStreamOwner = value; }
+		}
 
 		#region Stream Overrides
 		/// <summary>
@@ -228,7 +233,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		/// <param name="offset">Offset in array to begin storing data</param>
 		/// <param name="count">The maximum number of bytes to read</param>
 		/// <returns>The total number of bytes read into the buffer. This might be less
-		/// than the number of bytes requested if that number of bytes are not 
+		/// than the number of bytes requested if that number of bytes are not
 		/// currently available or zero if the end of the stream is reached.
 		/// </returns>
 		public override int Read(byte[] buffer, int offset, int count)

@@ -359,7 +359,12 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// When the flag is true <see cref="Stream.Dispose()" /> will close the underlying stream also.
 		/// </summary>
 		/// <remarks>The default value is true.</remarks>
-		public bool IsStreamOwner { get; set; } = true;
+		private bool isStreamOwner = true;
+		public bool IsStreamOwner
+		{
+			get { return isStreamOwner;}
+			set { isStreamOwner = value; }
+		}
 
 		/// <summary>
 		/// Skip specified number of bytes of uncompressed data
@@ -368,7 +373,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Number of bytes to skip
 		/// </param>
 		/// <returns>
-		/// The number of bytes skipped, zero if the end of 
+		/// The number of bytes skipped, zero if the end of
 		/// stream has been reached
 		/// </returns>
 		/// <exception cref="ArgumentOutOfRangeException">
@@ -409,7 +414,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 
 		/// <summary>
 		/// Clear any cryptographic state.
-		/// </summary>		
+		/// </summary>
 		protected void StopDecrypting()
 		{
 			inputBuffer.CryptoTransform = null;

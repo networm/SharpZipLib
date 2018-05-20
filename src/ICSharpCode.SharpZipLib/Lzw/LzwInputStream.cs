@@ -10,7 +10,7 @@ namespace ICSharpCode.SharpZipLib.Lzw
 	///
 	/// See http://en.wikipedia.org/wiki/Compress
 	/// See http://wiki.wxwidgets.org/Development:_Z_File_Format
-	/// 
+	///
 	/// The file header consists of 3 (or optionally 4) bytes. The first two bytes
 	/// contain the magic marker "0x1f 0x9d", followed by a byte of flags.
 	///
@@ -21,10 +21,10 @@ namespace ICSharpCode.SharpZipLib.Lzw
 	/// <code>
 	/// using System;
 	/// using System.IO;
-	/// 
+	///
 	/// using ICSharpCode.SharpZipLib.Core;
 	/// using ICSharpCode.SharpZipLib.LZW;
-	/// 
+	///
 	/// class MainClass
 	/// {
 	/// 	public static void Main(string[] args)
@@ -38,7 +38,7 @@ namespace ICSharpCode.SharpZipLib.Lzw
 	///                         // now do something with the buffer
 	/// 		}
 	/// 	}
-	/// }	
+	/// }
 	/// </code>
 	/// </example>
 	public class LzwInputStream : Stream
@@ -48,7 +48,12 @@ namespace ICSharpCode.SharpZipLib.Lzw
 		/// When the flag is true <see cref="Stream.Dispose()" /> will close the underlying stream also.
 		/// </summary>
 		/// <remarks>The default value is true.</remarks>
-		public bool IsStreamOwner { get; set; } = true;
+		private bool isStreamOwner = true;
+		public bool IsStreamOwner
+		{
+			get { return isStreamOwner;}
+			set { isStreamOwner = value; }
+		}
 
 		/// <summary>
 		/// Creates a LzwInputStream

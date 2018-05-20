@@ -367,7 +367,12 @@ namespace ICSharpCode.SharpZipLib.Tar
 		/// When the flag is true <see cref="Close" /> will close the underlying stream also.
 		/// </summary>
 		/// <remarks>The default value is true.</remarks>
-		public bool IsStreamOwner { get; set; } = true;
+		private bool isStreamOwner = true;
+		public bool IsStreamOwner
+		{
+			get { return isStreamOwner;}
+			set { isStreamOwner = value; }
+		}
 
 		/// <summary>
 		/// Get the current block number, within the current record, zero based.

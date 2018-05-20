@@ -8,7 +8,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 	/// <summary>
 	/// A special stream deflating or compressing the bytes that are
 	/// written to it.  It uses a Deflater to perform actual deflating.<br/>
-	/// Authors of the original java version : Tom Tromey, Jochen Hoenicke 
+	/// Authors of the original java version : Tom Tromey, Jochen Hoenicke
 	/// </summary>
 	public class DeflaterOutputStream : Stream
 	{
@@ -87,7 +87,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 
 		#region Public API
 		/// <summary>
-		/// Finishes the stream by calling finish() on the deflater. 
+		/// Finishes the stream by calling finish() on the deflater.
 		/// </summary>
 		/// <exception cref="SharpZipBaseException">
 		/// Not all input is deflated
@@ -128,7 +128,12 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// When the flag is true <see cref="Stream.Dispose()" /> will close the underlying stream also.
 		/// </summary>
 		/// <remarks>The default value is true.</remarks>
-		public bool IsStreamOwner { get; set; } = true;
+		private bool isStreamOwner = true;
+		public bool IsStreamOwner
+		{
+			get { return isStreamOwner;}
+			set { isStreamOwner = value; }
+		}
 
 		///	<summary>
 		/// Allows client to determine if an entry can be patched after its added

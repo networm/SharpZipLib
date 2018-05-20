@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip.Compression;
-using static ICSharpCode.SharpZipLib.Zip.Compression.Deflater;
 
 namespace ICSharpCode.SharpZipLib.Zip
 {
@@ -252,7 +251,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		}
 
 		/// <summary>
-		/// Get/set a value indicating wether file dates and times should 
+		/// Get/set a value indicating wether file dates and times should
 		/// be restored when extracting files from an archive.
 		/// </summary>
 		/// <remarks>The default value is false.</remarks>
@@ -473,7 +472,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 			if (e.ContinueRunning) {
 				try {
-					// The open below is equivalent to OpenRead which gaurantees that if opened the 
+					// The open below is equivalent to OpenRead which gaurantees that if opened the
 					// file will not be changed by subsequent openers, but precludes opening in some cases
 					// were it could succeed. ie the open may fail as its already open for writing and the share mode should reflect that.
 					using (FileStream stream = File.Open(e.Name, FileMode.Open, FileAccess.Read, FileShare.Read)) {
@@ -654,7 +653,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 		IEntryFactory entryFactory_ = new ZipEntryFactory();
 		INameTransform extractNameTransform_;
 		UseZip64 useZip64_ = UseZip64.Dynamic;
-        CompressionLevel compressionLevel_ = CompressionLevel.DEFAULT_COMPRESSION;
+        Deflater.CompressionLevel compressionLevel_ = Deflater.CompressionLevel.DEFAULT_COMPRESSION;
 
         string password_;
 

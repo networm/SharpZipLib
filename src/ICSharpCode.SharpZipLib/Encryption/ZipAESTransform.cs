@@ -14,8 +14,17 @@ namespace ICSharpCode.SharpZipLib.Encryption
 		{
 			bool _finalised;
 			public IncrementalHash(byte[] key) : base(key) { }
-			public static IncrementalHash CreateHMAC(string n, byte[] key) => new IncrementalHash(key);
-			public void AppendData(byte[] buffer, int offset, int count) => TransformBlock(buffer, offset, count, buffer, offset);
+
+			public static IncrementalHash CreateHMAC(string n, byte[] key)
+			{
+				return new IncrementalHash(key);
+			}
+
+			public void AppendData(byte[] buffer, int offset, int count)
+			{
+				TransformBlock(buffer, offset, count, buffer, offset);
+			}
+
 			public byte[] GetHashAndReset()
 			{
 				if (!_finalised)
@@ -119,7 +128,7 @@ namespace ICSharpCode.SharpZipLib.Encryption
 				ix++;
 			}
 			if (_writeMode) {
-				// This does not change the buffer. 
+				// This does not change the buffer.
 				_hmacsha1.AppendData(outputBuffer, outputOffset, inputCount);
 			}
 			return inputCount;

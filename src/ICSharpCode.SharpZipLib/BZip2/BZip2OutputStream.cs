@@ -5,7 +5,7 @@ using ICSharpCode.SharpZipLib.Checksum;
 namespace ICSharpCode.SharpZipLib.BZip2
 {
 	/// <summary>
-	/// An output stream that compresses into the BZip2 format 
+	/// An output stream that compresses into the BZip2 format
 	/// including file header chars into another stream.
 	/// </summary>
 	public class BZip2OutputStream : Stream
@@ -113,13 +113,13 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		}
 
 		/// <summary>
-		/// Initialise a new instance of the <see cref="BZip2OutputStream"></see> 
+		/// Initialise a new instance of the <see cref="BZip2OutputStream"></see>
 		/// for the specified stream, using the given blocksize.
 		/// </summary>
 		/// <param name="stream">The stream to write compressed data to.</param>
 		/// <param name="blockSize">The block size to use.</param>
 		/// <remarks>
-		/// Valid block sizes are in the range 1..9, with 1 giving 
+		/// Valid block sizes are in the range 1..9, with 1 giving
 		/// the lowest compression and 9 the highest.
 		/// </remarks>
 		public BZip2OutputStream(Stream stream, int blockSize)
@@ -147,7 +147,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		}
 
 		/// <summary>
-		/// Ensures that resources are freed and other cleanup operations 
+		/// Ensures that resources are freed and other cleanup operations
 		/// are performed when the garbage collector reclaims the BZip2OutputStream.
 		/// </summary>
 		~BZip2OutputStream()
@@ -160,7 +160,12 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		/// When the flag is true <see cref="Stream.Dispose()" /> will close the underlying stream also.
 		/// </summary>
 		/// <remarks>The default value is true.</remarks>
-		public bool IsStreamOwner { get; set; } = true;
+		private bool isStreamOwner = true;
+		public bool IsStreamOwner
+		{
+			get { return isStreamOwner;}
+			set { isStreamOwner = value; }
+		}
 
 		/// <summary>
 		/// Gets a value indicating whether the current stream supports reading
@@ -257,7 +262,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 		/// <param name="offset">The offset in the buffer to start storing data at.</param>
 		/// <param name="count">The maximum number of bytes to read.</param>
 		/// <returns>The total number of bytes read. This might be less than the number of bytes
-		/// requested if that number of bytes are not currently available, or zero 
+		/// requested if that number of bytes are not currently available, or zero
 		/// if the end of the stream is reached.</returns>
 		public override int Read(byte[] buffer, int offset, int count)
 		{
@@ -424,7 +429,7 @@ namespace ICSharpCode.SharpZipLib.BZip2
 
 		/// <summary>
 		/// Flush output buffers
-		/// </summary>		
+		/// </summary>
 		public override void Flush()
 		{
 			baseStream.Flush();
