@@ -989,7 +989,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 				if (length < 7)
 					throw new ZipException("AES Extra Data Length " + length + " invalid.");
 				int ver = extraData.ReadShort();            // Version number (1=AE-1 2=AE-2)
+                #pragma warning disable 0219
 				int vendorId = extraData.ReadShort();       // 2-character vendor ID 0x4541 = "AE"
+                #pragma warning restore 0219
 				int encrStrength = extraData.ReadByte();    // encryption strength 1 = 128 2 = 192 3 = 256
 				int actualCompress = extraData.ReadShort(); // The actual compression method used to compress the file
 				_aesVer = ver;
@@ -1175,7 +1177,9 @@ namespace ICSharpCode.SharpZipLib.Zip
 
 		bool forceZip64_;
 		byte cryptoCheckValue_;
+		#pragma warning disable 0414
 		int _aesVer;                            // Version number (2 = AE-2 ?). Assigned but not used.
+		#pragma warning restore 0414
 		int _aesEncryptionStrength;             // Encryption strength 1 = 128 2 = 192 3 = 256
 		#endregion
 	}

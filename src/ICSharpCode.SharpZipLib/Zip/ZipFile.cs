@@ -2954,6 +2954,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 				// total number of disks 4 bytes
 				ReadLEUint(); // startDisk64 is not currently used
 				ulong offset64 = ReadLEUlong();
+                #pragma warning disable 0219
 				uint totalDisks = ReadLEUint();
 
 				baseStream_.Position = (long)offset64;
@@ -2971,6 +2972,7 @@ namespace ICSharpCode.SharpZipLib.Zip
 				uint centralDirDisk = ReadLEUint();
 				entriesForThisDisk = ReadLEUlong();
 				entriesForWholeCentralDir = ReadLEUlong();
+                #pragma warning restore 0219
 				centralDirSize = ReadLEUlong();
 				offsetOfCentralDir = (long)ReadLEUlong();
 
@@ -3011,8 +3013,10 @@ namespace ICSharpCode.SharpZipLib.Zip
 				int extraLen = ReadLEUshort();
 				int commentLen = ReadLEUshort();
 
+				#pragma warning disable 0219
 				int diskStartNo = ReadLEUshort();  // Not currently used
 				int internalAttributes = ReadLEUshort();  // Not currently used
+				#pragma warning restore 0219
 
 				uint externalAttributes = ReadLEUint();
 				long offset = ReadLEUint();
